@@ -6,7 +6,7 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import { getMasters } from "./discogs";
-import { organizeListingsByStore } from "./export";
+import { organizeListingsByStore, organizeListingsByTitle } from "./export";
 import { getAllMarketplaceListings } from "./marketplace";
 dotenv.config();
 
@@ -17,12 +17,11 @@ const main = async () => {
   const masters = await getMasters(username, token);
   console.log("got " + masters.length + " masters");
   fs.writeFileSync("masters.json", JSON.stringify(masters));
-  // const masters = JSON.parse(fs.readFileSync("masters.json", "utf8"));
   const allListings = await getAllMarketplaceListings(masters);
   console.log("writing " + allListings.length + " listings to file");
   fs.writeFileSync("listings.json", JSON.stringify(allListings));
-  //   const allListings = JSON.parse(fs.readFileSync("listings.json", "utf8"));
   organizeListingsByStore(allListings);
+  organizeListingsByTitle(allListings);
 };
 
 main();
