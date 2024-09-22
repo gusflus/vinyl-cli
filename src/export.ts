@@ -165,8 +165,8 @@ export const organizeListingsByPrice = (listings: _marketplaceResult[]) => {
     const key = listing.title.item + listing.seller.name + listing.seller.url;
 
     const newListing: PrintStore = {
-      name: listing.seller.name,
-      url: listing.seller.url,
+      name: listing.title.item,
+      url: listing.url,
       condition: {
         sleeve: listing.condition.sleeve.short,
         media: listing.condition.media.short,
