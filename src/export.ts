@@ -36,6 +36,14 @@ type ByTitleResult = {
   listings: PrintStore[];
 };
 
+type ByPriceResult = PrintListing & {
+  store: {
+    name: string;
+    url: string;
+    otherListings: PrintStore[];
+  };
+};
+
 export const organizeListingsByStore = (listings: _marketplaceResult[]) => {
   const availableListings = listings.filter((listing) => listing.isAvailable);
   const sellerAggregated: { [sellerId: string]: ByStoreResult } = {};
@@ -145,4 +153,87 @@ export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
   }
 
   fs.writeFileSync("ListingsByStore.json", JSON.stringify(titleAggregated));
+};
+
+export const organizeListingsByPrice = (listings: _marketplaceResult[]) => {
+  const availableListings = listings.filter((listing) => listing.isAvailable);
+  const priceAggregated: { [key: string]: ByPriceResult } = {};
+
+  availableListings.forEach((listing) => {
+    const totalPrice =
+      parseFloat(listing.price.base) + parseFloat(listing.price.shipping);
+    const key = listing.title.item + listing.seller.name + listing.seller.url;
+
+    const newListing: PrintStore = {
+      name: listing.seller.name,
+      url: listing.seller.url,
+      condition: {
+        sleeve: listing.condition.sleeve.short,
+        media: listing.condition.media.short,
+      },
+      price: listing.price.base,
+      shipping: listing.price.shipping,
+    };
+
+    if (!priceAggregated[key]) {
+      priceAggregated[key] = {
+        title: listing.title.item,
+        url: listing.url,
+        condition: {
+          sleeve: listing.condition.sleeve.short,
+          media: listing.condition.media.short,
+        },
+        price: listing.price.base,
+        shipping: listing.price.shipping,
+        store: {
+          name: listing.seller.name,
+          url: listing.seller.url,
+          otherListings: [newListing],
+        },
+      };
+    } else {
+      const current = priceAggregated[key];
+      if (
+        totalPrice <
+        parseFloat(current.price) + parseFloat(current.shipping)
+      ) {
+        priceAggregated[key] = {
+          ...current,
+          price: listing.price.base,
+          shipping: listing.price.shipping,
+          url: listing.url,
+          condition: {
+            sleeve: listing.condition.sleeve.short,
+            media: listing.condition.media.short,
+          },
+        };
+      }
+      current.store.otherListings.push(newListing);
+    }
+  });
+
+  // Remove duplicates by title
+  const uniqueListings: { [title: string]: ByPriceResult } = {};
+  for (const key in priceAggregated) {
+    const listing = priceAggregated[key];
+    if (!uniqueListings[listing.title]) {
+      uniqueListings[listing.title] = listing;
+    } else {
+      const current = uniqueListings[listing.title];
+      const totalCurrent =
+        parseFloat(current.price) + parseFloat(current.shipping);
+      const totalNew = parseFloat(listing.price) + parseFloat(listing.shipping);
+      if (totalNew < totalCurrent) {
+        uniqueListings[listing.title] = listing;
+      }
+    }
+  }
+
+  const sortedListings = Object.values(uniqueListings).sort((a, b) => {
+    const totalA = parseFloat(a.price) + parseFloat(a.shipping);
+    const totalB = parseFloat(b.price) + parseFloat(b.shipping);
+    return totalA - totalB;
+  });
+
+  fs.writeFileSync("ListingsByPrice.json", JSON.stringify(sortedListings));
 };

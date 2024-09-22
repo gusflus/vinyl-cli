@@ -1,12 +1,11 @@
-// get all releases in discogs wantlist
-// get all masters of those releases
-// get all marketplace listings of those masters with parameters
-// optimize
-
 import dotenv from "dotenv";
 import fs from "fs";
 import { getMasters } from "./discogs";
-import { organizeListingsByStore, organizeListingsByTitle } from "./export";
+import {
+  organizeListingsByPrice,
+  organizeListingsByStore,
+  organizeListingsByTitle,
+} from "./export";
 import { getAllMarketplaceListings } from "./marketplace";
 dotenv.config();
 
@@ -22,6 +21,7 @@ const main = async () => {
   fs.writeFileSync("listings.json", JSON.stringify(allListings));
   organizeListingsByStore(allListings);
   organizeListingsByTitle(allListings);
+  organizeListingsByPrice(allListings);
 };
 
 main();
