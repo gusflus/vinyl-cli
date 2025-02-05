@@ -95,7 +95,14 @@ export const organizeListingsByStore = (listings: _marketplaceResult[]) => {
     seller.listings = Object.values(uniqueListings);
   }
 
-  fs.writeFileSync("organized/listings.json", JSON.stringify(sellerAggregated));
+  const sortedListings = Object.values(sellerAggregated).sort(
+    (a, b) => b.listings.length - a.listings.length
+  );
+
+  fs.writeFileSync(
+    "organized/listingsByStore.json",
+    JSON.stringify(sortedListings)
+  );
 };
 
 export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
@@ -153,7 +160,7 @@ export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
   }
 
   fs.writeFileSync(
-    "organized/listingsByStore.json",
+    "organized/listingsByTitlee.json",
     JSON.stringify(titleAggregated)
   );
 };

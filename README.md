@@ -26,3 +26,7 @@ remove the `//` before each of the desireable conditions in the src/app.ts file.
 ```bash
 yarn app
 ```
+
+### rerunning
+
+the app saves the masters and listings in loaded/ so it doesnt need to fetch every time. if you want to fetch again, delete the files in loaded/ and rerun

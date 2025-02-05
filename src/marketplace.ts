@@ -71,7 +71,7 @@ const getListings = async (id: string, conditions: ConditionType[]) => {
       });
 
       totalResults.push(...(result.items as any));
-      if (page >= Math.min(result.page.total, 4)) {
+      if (page >= result.page.total) {
         hasMorePages = false;
       }
 

@@ -15,24 +15,30 @@ const username = "gusflus";
 const token = process.env.DISCOGS_PERSONAL_TOKEN as string;
 
 const CONDITIONS: ConditionType[] = [
-  "Mint (M)",
+  // "Mint (M)",
   "Near Mint (NM or M-)",
   "Very Good Plus (VG+)",
   "Very Good (VG)",
   "Good Plus (G+)",
   "Good (G)",
-  //   "Fair (F)",
-  //   "Poor (P)",
+  "Fair (F)",
+  "Poor (P)",
 ];
 
-const main = async () => {
+const app = async () => {
+  if (!fs.existsSync("loaded")) {
+    fs.mkdirSync("loaded");
+  }
+  if (!fs.existsSync("organized")) {
+    fs.mkdirSync("organized");
+  }
+
   let masters: any, listings: any;
   if (fs.existsSync("loaded/masters.json")) {
     masters = JSON.parse(fs.readFileSync("loaded/masters.json", "utf8"));
     console.log("loaded existing masters from file");
   } else {
     masters = await getMasters(username, token);
-    console.log("got " + masters.length + " masters");
     fs.writeFileSync("loaded/masters.json", JSON.stringify(masters));
   }
 
@@ -41,14 +47,12 @@ const main = async () => {
     console.log("loaded existing listings from file");
   } else {
     listings = await getAllMarketplaceListings(masters, CONDITIONS);
-    console.log("got " + listings.length + " listings");
     fs.writeFileSync("loaded/listings.json", JSON.stringify(listings));
   }
 
-  console.log("organizing listings");
   organizeListingsByStore(listings);
   organizeListingsByTitle(listings);
   organizeListingsByPrice(listings);
 };
 
-main();
+app();
