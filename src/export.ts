@@ -95,7 +95,7 @@ export const organizeListingsByStore = (listings: _marketplaceResult[]) => {
     seller.listings = Object.values(uniqueListings);
   }
 
-  fs.writeFileSync("organizedListings.json", JSON.stringify(sellerAggregated));
+  fs.writeFileSync("organized/listings.json", JSON.stringify(sellerAggregated));
 };
 
 export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
@@ -152,7 +152,10 @@ export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
     });
   }
 
-  fs.writeFileSync("ListingsByStore.json", JSON.stringify(titleAggregated));
+  fs.writeFileSync(
+    "organized/listingsByStore.json",
+    JSON.stringify(titleAggregated)
+  );
 };
 
 export const organizeListingsByPrice = (listings: _marketplaceResult[]) => {
@@ -188,7 +191,7 @@ export const organizeListingsByPrice = (listings: _marketplaceResult[]) => {
         store: {
           name: listing.seller.name,
           url: listing.seller.url,
-          otherListings: [newListing],
+          otherListings: [],
         },
       };
     } else {
@@ -235,5 +238,32 @@ export const organizeListingsByPrice = (listings: _marketplaceResult[]) => {
     return totalA - totalB;
   });
 
-  fs.writeFileSync("ListingsByPrice.json", JSON.stringify(sortedListings));
+  sortedListings.forEach((listing) => {
+    const otherListings: PrintStore[] = [];
+    availableListings.forEach((otherListing) => {
+      if (
+        parseFloat(otherListing.price.base) <= parseFloat(listing.price) + 5 &&
+        otherListing.title.item !== listing.title &&
+        otherListing.seller.name === listing.store.name
+      ) {
+        otherListings.push({
+          name: otherListing.title.item,
+          url: otherListing.url,
+          condition: {
+            sleeve: otherListing.condition.sleeve.short,
+            media: otherListing.condition.media.short,
+          },
+          price: otherListing.price.base,
+          shipping: otherListing.price.shipping,
+        });
+      }
+    });
+
+    listing.store.otherListings = otherListings;
+  });
+
+  fs.writeFileSync(
+    "organized/listingsByPrice.json",
+    JSON.stringify(sortedListings)
+  );
 };

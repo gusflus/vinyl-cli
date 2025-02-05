@@ -123,9 +123,9 @@
   integrity sha512-BHpFFeslkWrXWyUPnbKm+xYYVYruCinGcftSBaa8zoF9hZO4BcSCFUvHVTtzpIY6YzUnYtuEhZ+C9iEXjxnasg==
 
 "@lionralfs/discogs-client@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/@lionralfs/discogs-client/-/discogs-client-4.1.1.tgz#0ada196c3eb927529af322cc54dba406906a2fe9"
-  integrity sha512-bOVZv8L8IWKRtI+v3W+t37pK7kdHEPtVJBqbufU45uZYVqVPG/Jo/f6Y8J2sR6SWpvJ6ZYoFOSZBzAC8brn58w==
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@lionralfs/discogs-client/-/discogs-client-4.1.3.tgz#34c767719ef85fbfbf434b8d0483732a2b1dde1e"
+  integrity sha512-m+WhfcJkP7D5ET39jGp44nVkrXEbie5b4DmVa3ZVIVa9t5Yj9nKdtXjnZE1736GyMFezfUL1JKYFPOPLKI4HLA==
   dependencies:
     node-fetch "^3.2.0"
 
@@ -137,11 +137,11 @@
     "@types/node" "*"
 
 "@types/node@*", "@types/node@^22.5.0":
-  version "22.5.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.5.5.tgz#52f939dd0f65fc552a4ad0b392f3c466cc5d7a44"
-  integrity sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==
+  version "22.13.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.13.1.tgz#a2a3fefbdeb7ba6b89f40371842162fac0934f33"
+  integrity sha512-jK8uzQlrvXqEU91UxiK5J7pKHyzgnI1Qnl0QDHIgVGuolJhRb9EEl28Cj9b3rGR8B2lhFCtvIm5os8lFnO/1Ew==
   dependencies:
-    undici-types "~6.19.2"
+    undici-types "~6.20.0"
 
 ansi-regex@^5.0.1:
   version "5.0.1"
@@ -169,9 +169,9 @@ discogs-marketplace-api-nodejs@^1.10.0:
     user-agents "^1.1.271"
 
 dotenv@^16.4.5:
-  version "16.4.5"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
-  integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
+  version "16.4.7"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.7.tgz#0e20c5b82950140aa99be360a8a5f52335f53c26"
+  integrity sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
@@ -229,9 +229,9 @@ fsevents@~2.3.3:
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 get-tsconfig@^4.7.5:
-  version "4.8.1"
-  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.8.1.tgz#8995eb391ae6e1638d251118c7b56de7eb425471"
-  integrity sha512-k9PN+cFBmaLWtVz29SkUoqU5O0slLuHJXt/2P+tMVFT+phsSGXGkp9t3rQIqdz0e+06EHNGs3oM6ZX1s2zHxRg==
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.10.0.tgz#403a682b373a823612475a4c2928c7326fc0f6bb"
+  integrity sha512-kGzZ3LWWQcGIAmg6iWvXn0ei6WDtV26wzHRMwDSzmAbcXrTEXxHy6IehI6/4eT6VRKyMP1eF1VqwrVUmE/LR7A==
   dependencies:
     resolve-pkg-maps "^1.0.0"
 
@@ -260,16 +260,16 @@ node-fetch@^3.2.0:
     formdata-polyfill "^4.0.10"
 
 playwright-chromium@^1.45.2:
-  version "1.47.1"
-  resolved "https://registry.yarnpkg.com/playwright-chromium/-/playwright-chromium-1.47.1.tgz#cec534a66141667912cfd568b61d30fd8b3cd4e5"
-  integrity sha512-8YVyj98eWrl13X3JXFcdVCpJ0HPCYG1bDrNY/2n7z4st8k/Mf0V9XCafSEDPC80ZD7roirhIyyyPcSLOGj/Q2g==
+  version "1.50.1"
+  resolved "https://registry.yarnpkg.com/playwright-chromium/-/playwright-chromium-1.50.1.tgz#216fad79596ff914536fa83abac2911a2b6ab23f"
+  integrity sha512-0IKyCdwS5dDoGE3EqqfYtX24qF6+ef1UI6OLn2VUi2aHOgsI/KnESRm6/Ws0W78SrwhLi6lLlAL6fQISoO1cfw==
   dependencies:
-    playwright-core "1.47.1"
+    playwright-core "1.50.1"
 
-playwright-core@1.47.1:
-  version "1.47.1"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.47.1.tgz#bb45bdfb0d48412c535501aa3805867282857df8"
-  integrity sha512-i1iyJdLftqtt51mEk6AhYFaAJCDx0xQ/O5NU8EKaWFgMjItPVma542Nh/Aq8aLCjIJSzjaiEQGW/nyqLkGF1OQ==
+playwright-core@1.50.1:
+  version "1.50.1"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.50.1.tgz#6a0484f1f1c939168f40f0ab3828c4a1592c4504"
+  integrity sha512-ra9fsNWayuYumt+NiM069M6OkcRb1FZSK8bgi66AtpFoWkg2+y0bJSNmkFrWhMbEBbVKC/EruAHH3g0zmtwGmQ==
 
 resolve-pkg-maps@^1.0.0:
   version "1.0.0"
@@ -293,9 +293,9 @@ strip-ansi@^6.0.1:
     ansi-regex "^5.0.1"
 
 tsx@^4.19.1:
-  version "4.19.1"
-  resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.19.1.tgz#b7bffdf4b565813e4dea14b90872af279cd0090b"
-  integrity sha512-0flMz1lh74BR4wOvBjuh9olbnwqCPc35OOlfyzHba0Dc+QNUeWX/Gq2YTbnwcWPO3BMd8fkzRVrHcsR+a7z7rA==
+  version "4.19.2"
+  resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.19.2.tgz#2d7814783440e0ae42354d0417d9c2989a2ae92c"
+  integrity sha512-pOUl6Vo2LUq/bSa8S5q7b91cgNSjctn9ugq/+Mvow99qW6x/UZYwzxy/3NmqoT66eHYfCVvFvACC58UBPFf28g==
   dependencies:
     esbuild "~0.23.0"
     get-tsconfig "^4.7.5"
@@ -303,19 +303,19 @@ tsx@^4.19.1:
     fsevents "~2.3.3"
 
 typescript@^5.5.4:
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
-  integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.7.3.tgz#919b44a7dbb8583a9b856d162be24a54bf80073e"
+  integrity sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==
 
-undici-types@~6.19.2:
-  version "6.19.8"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
-  integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
+undici-types@~6.20.0:
+  version "6.20.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.20.0.tgz#8171bf22c1f588d1554d55bf204bc624af388433"
+  integrity sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==
 
 user-agents@^1.1.271:
-  version "1.1.325"
-  resolved "https://registry.yarnpkg.com/user-agents/-/user-agents-1.1.325.tgz#12c3602d6b0175468f45564b3c684c390c3be57e"
-  integrity sha512-BmVDscJOZsBBztMPHg+wf65QwbT+N3C46YEsuW8BmcxRxwKh2AbdSaKEjzoC7rDlyuECXEUXO+C2eW3QAhbl2A==
+  version "1.1.440"
+  resolved "https://registry.yarnpkg.com/user-agents/-/user-agents-1.1.440.tgz#2f730a21a342e2e10902e1b3392b0a95678fc710"
+  integrity sha512-CSF//QNADcn56qtnP2fVEpDwzBmn10zoD7W3d3ooD06fAvMiP1AS2SguZcpJGbg5G+4LOxoV131QA6bmj7iz8Q==
   dependencies:
     lodash.clonedeep "^4.5.0"
 

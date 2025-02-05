@@ -16,9 +16,12 @@ cp .env.example .env
 
 ```bash
 yarn
+yarn upgrade
 ```
 
 ### run the cli
+
+remove the `//` before each of the desireable conditions in the src/app.ts file. then run the following command
 
 ```bash
 yarn app

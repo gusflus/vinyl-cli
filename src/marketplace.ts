@@ -52,20 +52,9 @@ export type _marketplaceResult = {
   };
 };
 
-const CONDITIONS: ConditionType[] = [
-  "Mint (M)",
-  "Near Mint (NM or M-)",
-  "Very Good Plus (VG+)",
-  //   "Very Good (VG)",
-  //   "Good Plus (G+)",
-  //   "Good (G)",
-  //   "Fair (F)",
-  //   "Poor (P)",
-];
-
-const getListings = async (id: string) => {
+const getListings = async (id: string, conditions: ConditionType[]) => {
   let totalResults: _marketplaceResult[] = [];
-  for (const c of CONDITIONS) {
+  for (const c of conditions) {
     let page = 1;
     let hasMorePages = true;
 
@@ -94,14 +83,15 @@ const getListings = async (id: string) => {
 };
 
 export const getAllMarketplaceListings = async (
-  masters: GetMasterResponse[]
+  masters: GetMasterResponse[],
+  conditions: ConditionType[]
 ) => {
   const b = bar("marketplace");
   b.start(masters.length, 0);
   return await Promise.all(
     masters.map(async (master) => {
       try {
-        const r = await getListings(master.id.toString());
+        const r = await getListings(master.id.toString(), conditions);
         b.increment();
         return r;
       } catch (e) {

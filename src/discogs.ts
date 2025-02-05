@@ -13,9 +13,9 @@ const discogsClient = (token: string) =>
       consumerSecret: process.env.DISCOGS_CONSUMER_SECRET,
     },
   }).setConfig({
-    exponentialBackoffIntervalMs: 1100,
-    exponentialBackoffMaxRetries: 10,
-    exponentialBackoffRate: 1.7,
+    exponentialBackoffIntervalMs: 1010,
+    exponentialBackoffMaxRetries: 20,
+    exponentialBackoffRate: 1.5,
   });
 
 const getWants = async (username: string, token: string) => {
