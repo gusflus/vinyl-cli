@@ -19,10 +19,10 @@ const CONDITIONS: ConditionType[] = [
   "Near Mint (NM or M-)",
   "Very Good Plus (VG+)",
   "Very Good (VG)",
-  "Good Plus (G+)",
-  "Good (G)",
-  "Fair (F)",
-  "Poor (P)",
+  // "Good Plus (G+)",
+  // "Good (G)",
+  // "Fair (F)",
+  // "Poor (P)",
 ];
 
 const app = async () => {

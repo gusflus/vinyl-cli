@@ -74,30 +74,37 @@ export const organizeListingsByStore = (listings: _marketplaceResult[]) => {
 
   for (const sellerId in sellerAggregated) {
     const seller = sellerAggregated[sellerId];
-    const uniqueListings: { [title: string]: PrintListing } = {};
+    const titleAggregated: { [title: string]: PrintListing[] } = {};
 
     seller.listings.forEach((listing) => {
-      const key =
-        listing.title + listing.condition.sleeve + listing.condition.media;
-      if (!uniqueListings[key]) {
-        uniqueListings[key] = listing;
-      } else {
-        const current = uniqueListings[key];
-        if (
-          parseFloat(listing.price) + parseFloat(listing.shipping) <
-          parseFloat(current.price) + parseFloat(current.shipping)
-        ) {
-          uniqueListings[key] = listing;
-        }
+      if (!titleAggregated[listing.title]) {
+        titleAggregated[listing.title] = [];
       }
+      titleAggregated[listing.title].push(listing);
     });
 
-    seller.listings = Object.values(uniqueListings);
+    seller.listings = Object.keys(titleAggregated).map((title) => ({
+      title,
+      listings: titleAggregated[title].sort((a, b) => {
+        const totalA = parseFloat(a.price) + parseFloat(a.shipping);
+        const totalB = parseFloat(b.price) + parseFloat(b.shipping);
+        return totalA - totalB;
+      }),
+    }));
   }
 
-  const sortedListings = Object.values(sellerAggregated).sort(
-    (a, b) => b.listings.length - a.listings.length
-  );
+  const sortedListings = Object.values(sellerAggregated).sort((a, b) => {
+    if (b.listings.length === a.listings.length) {
+      const totalA =
+        parseFloat(a.listings[0].listings[0].price) +
+        parseFloat(a.listings[0].listings[0].shipping);
+      const totalB =
+        parseFloat(b.listings[0].listings[0].price) +
+        parseFloat(b.listings[0].listings[0].shipping);
+      return totalA - totalB;
+    }
+    return b.listings.length - a.listings.length;
+  });
 
   fs.writeFileSync(
     "organized/listingsByStore.json",
@@ -151,7 +158,6 @@ export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
 
     titleInfo.listings = Object.values(uniqueListings);
 
-    // Sort listings by cheapest price
     titleInfo.listings.sort((a, b) => {
       const totalA = parseFloat(a.price) + parseFloat(a.shipping);
       const totalB = parseFloat(b.price) + parseFloat(b.shipping);
@@ -160,7 +166,7 @@ export const organizeListingsByTitle = (listings: _marketplaceResult[]) => {
   }
 
   fs.writeFileSync(
-    "organized/listingsByTitlee.json",
+    "organized/listingsByTitle.json",
     JSON.stringify(titleAggregated)
   );
 };
